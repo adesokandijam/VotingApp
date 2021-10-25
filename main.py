@@ -1,23 +1,36 @@
+def sign_up():
+    name = input("Enter your name: ")
+    password = input("Enter your password: ")
+
+    file = open('voters.txt','a')
+    file.write(name  + " " + password + "\n")
+    file.close()
+    sign_in()
+
 def sign_in():
-    email = "adesokanmajid@gmail.com"
-    password = "12345678"
-    print("Welcome to the Voting today. Kindly sign in or Press Y to sign up")
-    user_email = input("Enter your email or press Y to sign up: ")
-    if user_email in "Yy":
-        signUp()
-        return
-    else:
-        user_password = input("Enter your password: ")
-    if email != user_email or user_password != password:
-        print("Email or Password not correct. Retry or SignUp")
-        sign_in()
-    else:
-        print("Welcome to the voting app " + user_email)
+    name = input("Enter your name: ")
+    password = input("Enter your password: ")
+    file = open('voters.txt','r')
+    for user in file:
+        username, user_password = user.split()
+        if username == name and user_password == password:
+            print("Sign in Complete")
+            return
+    print("User not found!!! Register Now!")
+    sign_up()
 
 
-def signUp():
-    print ("Sign Up page")
-
-sign_in()
+#sign_up()
+#sign_in()
 
 
+def votePage():
+    print("Welcome to the Voting Page")
+    Postions = ["1: President", "2: Vice President", "3: General Secretary", "4: Treasurer", "5: Sports Director"]
+    print("Here are the positions available for contest")
+    for position in Postions:
+        print(position)
+    print
+
+
+votePage()
