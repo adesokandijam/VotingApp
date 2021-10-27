@@ -110,6 +110,11 @@ def voting_logic():
                     print("Enter " + str(i + 1) + " to vote for " + people)
                     i += 1
                 vote = int(input("Enter your vote here: "))
+                if vote < len(candidate[specific]):
+                    q[specific, candidate[specific][vote - 1]] += 1
+                else:
+                    print("wrong input. Vote is nullified")
+                #print(q)
                 q[specific, people] += 1
                 print(q)
         elif specific == "Treasurer" and len(candidate[specific]) != 0:
@@ -119,6 +124,11 @@ def voting_logic():
                     print("Enter " + str(i + 1) + " to vote for " + people)
                     i += 1
                 vote = int(input("Enter your vote here: "))
+                if vote < len(candidate[specific]):
+                    q[specific, candidate[specific][vote - 1]] += 1
+                else:
+                    print("wrong input. Vote is nullified")
+                #print(q)
                 q[specific, people] += 1
                 print(q)
         elif specific == "AGS" and len(candidate[specific]) != 0:
@@ -128,6 +138,11 @@ def voting_logic():
                     print("Enter " + str(i + 1) + " to vote for " + people)
                     i += 1
                 vote = int(input("Enter your vote here: "))
+                if vote < len(candidate[specific]):
+                    q[specific, candidate[specific][vote - 1]] += 1
+                else:
+                    print("wrong input. Vote is nullified")
+                #print(q)
                 q[specific, people] += 1
                 print(q)
         elif specific == "Sports" and len(candidate[specific]) != 0:
@@ -137,6 +152,11 @@ def voting_logic():
                     print("Enter " + str(i + 1) + " to vote for " + people)
                     i += 1
                 vote = int(input("Enter your vote here: "))
+                if vote < len(candidate[specific]):
+                    q[specific, candidate[specific][vote - 1]] += 1
+                else:
+                    print("wrong input. Vote is nullified")
+                #print(q)
                 q[specific, people] += 1
                 print(q)
         else:
