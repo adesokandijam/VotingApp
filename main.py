@@ -31,7 +31,7 @@ def votePage():
     print("Here are the positions available for contest")
     for position in Postions:
         print(position)
-    print
+    print()
 
 
 def getContestants():
@@ -61,65 +61,75 @@ def getContestants():
         else:
             print(f"Position {position} is not available at the moment")
     print(position_dict)
+    candidates.close()
     return position_dict
 
 
 def voting_logic():
     candidate = getContestants()
     j = 0
-
-    for item in candidate:
-        if len(candidate[item]) > j:
-            j = len(candidate[item])
     q = {}
-    #q[0,0] = 5
+    i = 0
+    for item in candidate:
+        for no_of_candidates in range(len(candidate[item])):
+            q[item, no_of_candidates] = 0
+            i += 1
 
     for specific in candidate:
         if specific == "President":
             print("We have " + str(len(candidate[specific])) + " people contesting for this position")
             i = 0
             for people in candidate[specific]:
-                print("Enter " + str(i+1) + " to vote for " + people)
-                q[0, i] = 0
+                print("Enter " + str(i + 1) + " to vote for " + people)
                 i += 1
             vote = int(input("Enter your vote here: "))
-            q[0,vote-1] += 1
-            #print(q)
-
-        if specific == "VicePresident":
-            print("We have " + str(len(candidate[specific])) + " people contesting for this position")
-            i = 0
-            for people in candidate[specific]:
-                print("Enter " + str(i+1) + " to vote for " + people)
-                q[1, i] = 0
-                i += 1
-            vote = int(input("Enter your vote here: "))
-            q[1,vote-1] += 1
-           # print(q)
-
-
-        if specific == "GeneralSecretary":
-            print("We have " + str(len(candidate[specific])) + " people contesting for this position")
-            i = 0
-            for people in candidate[specific]:
-                print("Enter " + str(i+1) + " to vote for " + people)
-                q[2, i] = 0
-                i += 1
-            vote = int(input("Enter your vote here: "))
-            q[2,vote-1] += 1
-            #print(q)
-
-        if specific == "Treasurer":
-            print("We have " + str(len(candidate[specific])) + " people contesting for this position")
-            i = 0
-            for people in candidate[specific]:
-                print("Enter " + str(i+1) + " to vote for " + people)
-                q[3, i] = 0
-                i += 1
-            vote = int(input("Enter your vote here: "))
-            q[3,vote-1] += 1
-            #print(q)
-    print(q)
+            q[specific, vote - 1] += 1
+            print(q)
+        elif specific == "VicePresident":
+                print("We have " + str(len(candidate[specific])) + " people contesting for this position")
+                i = 0
+                for people in candidate[specific]:
+                    print("Enter " + str(i + 1) + " to vote for " + people)
+                    i += 1
+                vote = int(input("Enter your vote here: "))
+                q[specific, vote - 1] += 1
+                print(q)
+        elif specific == "GeneralSecretary":
+                print("We have " + str(len(candidate[specific])) + " people contesting for this position")
+                i = 0
+                for people in candidate[specific]:
+                    print("Enter " + str(i + 1) + " to vote for " + people)
+                    i += 1
+                vote = int(input("Enter your vote here: "))
+                q[specific, vote - 1] += 1
+                print(q)
+        elif specific == "Treasurer":
+                print("We have " + str(len(candidate[specific])) + " people contesting for this position")
+                i = 0
+                for people in candidate[specific]:
+                    print("Enter " + str(i + 1) + " to vote for " + people)
+                    i += 1
+                vote = int(input("Enter your vote here: "))
+                q[specific, vote - 1] += 1
+                print(q)
+        elif specific == "AGS":
+                print("We have " + str(len(candidate[specific])) + " people contesting for this position")
+                i = 0
+                for people in candidate[specific]:
+                    print("Enter " + str(i + 1) + " to vote for " + people)
+                    i += 1
+                vote = int(input("Enter your vote here: "))
+                q[specific, vote - 1] += 1
+                print(q)
+        elif specific == "Sports":
+                print("We have " + str(len(candidate[specific])) + " people contesting for this position")
+                i = 0
+                for people in candidate[specific]:
+                    print("Enter " + str(i + 1) + " to vote for " + people)
+                    i += 1
+                vote = int(input("Enter your vote here: "))
+                q[specific, vote - 1] += 1
+                print(q)
 
 
 voting_logic()
