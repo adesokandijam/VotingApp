@@ -1,4 +1,3 @@
-
 def sign_up():
     print("Welcome to the Sign Up Page of the Dijam Voting App")
     name = input("Enter your name: ")
@@ -85,80 +84,92 @@ def voting_logic():
             for people in candidate[specific]:
                 print("Enter " + str(i + 1) + " to vote for " + people)
                 i += 1
-            vote = int(input("Enter your vote here: "))
-            if vote < len(candidate[specific]) and len(candidate[specific]) != 0:
-                q[specific, candidate[specific][vote - 1]] += 1
-            else:
-                print("wrong input. Vote is nullified")
-        elif specific == "VicePresident" and len(candidate[specific]) != 0:
-                print("We have " + str(len(candidate[specific])) + " people contesting for this position")
-                i = 0
-                for people in candidate[specific]:
-                    print("Enter " + str(i + 1) + " to vote for " + people)
-                    i += 1
+            try:
                 vote = int(input("Enter your vote here: "))
-                if vote < len(candidate[specific]):
+
+                if vote <= len(candidate[specific]) and len(candidate[specific]) != 0:
                     q[specific, candidate[specific][vote - 1]] += 1
                 else:
                     print("wrong input. Vote is nullified")
-                #print(q)
+            except ValueError:
+                print("Number not entered. Vote nullified")
+
+        elif specific == "VicePresident" and len(candidate[specific]) != 0:
+            print("We have " + str(len(candidate[specific])) + " people contesting for this position")
+            i = 0
+            for people in candidate[specific]:
+                print("Enter " + str(i + 1) + " to vote for " + people)
+                i += 1
+            try:
+                vote = int(input("Enter your vote here: "))
+
+                if vote <= len(candidate[specific]) and len(candidate[specific]) != 0:
+                    q[specific, candidate[specific][vote - 1]] += 1
+                else:
+                    print("wrong input. Vote is nullified")
+            except ValueError:
+                print("Number not entered. Vote nullified")
 
         elif specific == "GeneralSecretary" and len(candidate[specific]) != 0:
-                print("We have " + str(len(candidate[specific])) + " people contesting for this position")
-                i = 0
-                for people in candidate[specific]:
-                    print("Enter " + str(i + 1) + " to vote for " + people)
-                    i += 1
+            print("We have " + str(len(candidate[specific])) + " people contesting for this position")
+            i = 0
+            for people in candidate[specific]:
+                print("Enter " + str(i + 1) + " to vote for " + people)
+                i += 1
+            try:
                 vote = int(input("Enter your vote here: "))
-                if vote < len(candidate[specific]):
+
+                if vote <= len(candidate[specific]) and len(candidate[specific]) != 0:
                     q[specific, candidate[specific][vote - 1]] += 1
                 else:
                     print("wrong input. Vote is nullified")
-                #print(q)
-                q[specific, people] += 1
-                print(q)
+            except ValueError:
+                print("Number not entered. Vote nullified")
         elif specific == "Treasurer" and len(candidate[specific]) != 0:
-                print("We have " + str(len(candidate[specific])) + " people contesting for this position")
-                i = 0
-                for people in candidate[specific]:
-                    print("Enter " + str(i + 1) + " to vote for " + people)
-                    i += 1
+            print("We have " + str(len(candidate[specific])) + " people contesting for this position")
+            i = 0
+            for people in candidate[specific]:
+                print("Enter " + str(i + 1) + " to vote for " + people)
+                i += 1
+            try:
                 vote = int(input("Enter your vote here: "))
-                if vote < len(candidate[specific]):
+
+                if vote <= len(candidate[specific]) and len(candidate[specific]) != 0:
                     q[specific, candidate[specific][vote - 1]] += 1
                 else:
                     print("wrong input. Vote is nullified")
-                #print(q)
-                q[specific, people] += 1
-                print(q)
+            except ValueError:
+                print("Number not entered. Vote nullified")
         elif specific == "AGS" and len(candidate[specific]) != 0:
-                print("We have " + str(len(candidate[specific])) + " people contesting for this position")
-                i = 0
-                for people in candidate[specific]:
-                    print("Enter " + str(i + 1) + " to vote for " + people)
-                    i += 1
+            print("We have " + str(len(candidate[specific])) + " people contesting for this position")
+            i = 0
+            for people in candidate[specific]:
+                print("Enter " + str(i + 1) + " to vote for " + people)
+                i += 1
+            try:
                 vote = int(input("Enter your vote here: "))
-                if vote < len(candidate[specific]):
+
+                if vote <= len(candidate[specific]) and len(candidate[specific]) != 0:
                     q[specific, candidate[specific][vote - 1]] += 1
                 else:
                     print("wrong input. Vote is nullified")
-                #print(q)
-                q[specific, people] += 1
-                print(q)
+            except ValueError:
+                print("Number not entered. Vote nullified")
         elif specific == "Sports" and len(candidate[specific]) != 0:
-                print("We have " + str(len(candidate[specific])) + " people contesting for this position")
-                i = 0
-                for people in candidate[specific]:
-                    print("Enter " + str(i + 1) + " to vote for " + people)
-                    i += 1
+            print("We have " + str(len(candidate[specific])) + " people contesting for this position")
+            i = 0
+            for people in candidate[specific]:
+                print("Enter " + str(i + 1) + " to vote for " + people)
+                i += 1
+            try:
                 vote = int(input("Enter your vote here: "))
-                if vote < len(candidate[specific]):
+
+                if vote <= len(candidate[specific]) and len(candidate[specific]) != 0:
                     q[specific, candidate[specific][vote - 1]] += 1
                 else:
                     print("wrong input. Vote is nullified")
-                #print(q)
-                q[specific, people] += 1
-                print(q)
+            except ValueError:
+                print("Number not entered. Vote nullified")
         else:
             print("No candidate for the position " + specific)
     return q
@@ -166,7 +177,7 @@ def voting_logic():
 
 def store_result():
     name = sign_in()
-    q =  voting_logic()
+    q = voting_logic()
     results = open('resukt', 'a')
     i = 0
     results.write("This is how " + name + " voted\n")
@@ -186,10 +197,6 @@ def store_result():
             results.write("Sports:\n" + str(item[1]) + ' ' + str(result) + " votes")
         results.write('\n')
     results.close()
-
-
-
-
 
 
 store_result()
