@@ -1,3 +1,7 @@
+import os.path
+import tarfile
+
+
 def sign_up():
     name = input("Enter your name: ")
     password = input("Enter your password: ")
@@ -16,7 +20,7 @@ def sign_in():
         username, user_password = user.split()
         if username == name and user_password == password:
             print("Sign in Complete")
-            return
+            return name
     print("User not found!!! Register Now!")
     sign_up()
 
@@ -71,7 +75,7 @@ def voting_logic():
     q = {}
     i = 0
     for item in candidate:
-        for no_of_candidates in range(len(candidate[item])):
+        for no_of_candidates in candidate[item]:
             q[item, no_of_candidates] = 0
             i += 1
 
@@ -83,7 +87,7 @@ def voting_logic():
                 print("Enter " + str(i + 1) + " to vote for " + people)
                 i += 1
             vote = int(input("Enter your vote here: "))
-            q[specific, vote - 1] += 1
+            q[specific, candidate[specific][vote - 1]] += 1
             print(q)
         elif specific == "VicePresident":
                 print("We have " + str(len(candidate[specific])) + " people contesting for this position")
@@ -92,8 +96,10 @@ def voting_logic():
                     print("Enter " + str(i + 1) + " to vote for " + people)
                     i += 1
                 vote = int(input("Enter your vote here: "))
-                q[specific, vote - 1] += 1
-                print(q)
+                q[specific, candidate[specific][vote - 1]] += 1
+                print (q[specific, candidate[specific][vote - 1]])
+                #print(q)
+
         elif specific == "GeneralSecretary":
                 print("We have " + str(len(candidate[specific])) + " people contesting for this position")
                 i = 0
@@ -101,7 +107,7 @@ def voting_logic():
                     print("Enter " + str(i + 1) + " to vote for " + people)
                     i += 1
                 vote = int(input("Enter your vote here: "))
-                q[specific, vote - 1] += 1
+                q[specific, people] += 1
                 print(q)
         elif specific == "Treasurer":
                 print("We have " + str(len(candidate[specific])) + " people contesting for this position")
@@ -110,7 +116,7 @@ def voting_logic():
                     print("Enter " + str(i + 1) + " to vote for " + people)
                     i += 1
                 vote = int(input("Enter your vote here: "))
-                q[specific, vote - 1] += 1
+                q[specific, people] += 1
                 print(q)
         elif specific == "AGS":
                 print("We have " + str(len(candidate[specific])) + " people contesting for this position")
@@ -119,7 +125,7 @@ def voting_logic():
                     print("Enter " + str(i + 1) + " to vote for " + people)
                     i += 1
                 vote = int(input("Enter your vote here: "))
-                q[specific, vote - 1] += 1
+                q[specific, people] += 1
                 print(q)
         elif specific == "Sports":
                 print("We have " + str(len(candidate[specific])) + " people contesting for this position")
@@ -128,8 +134,37 @@ def voting_logic():
                     print("Enter " + str(i + 1) + " to vote for " + people)
                     i += 1
                 vote = int(input("Enter your vote here: "))
-                q[specific, vote - 1] += 1
+                q[specific, people] += 1
                 print(q)
+    return q
 
 
-voting_logic()
+def store_result():
+    name = sign_in()
+    q =  voting_logic()
+    results = open('resukt', 'a')
+    i = 0
+    results.write("This is how " + name + " voted\n")
+    for item in q:
+        result = q[item]
+        if item[0] == "President":
+            results.write("President:\n" + str(item[1]) + ' ' + str(result) + " votes")
+        if item[0] == "VicePresident":
+            results.write("Vice President:\n" + str(item[1]) + ' ' + str(result) + " votes")
+        if item[0] == "GeneralSecretary":
+            results.write("General Secretary:\n" + str(item[1]) + ' ' + str(result) + " votes")
+        if item[0] == "Treasurer":
+            results.write("Treasurer:\n" + str(item[1]) + ' ' + str(result) + " votes")
+        if item[0] == "AGS":
+            results.write("AGS:\n" + str(item[1]) + ' ' + str(result) + " votes")
+        if item[0] == "Sports":
+            results.write("Sports:\n" + str(item[1]) + ' ' + str(result) + " votes")
+        results.write('\n')
+    results.close()
+
+
+
+
+
+
+store_result()
