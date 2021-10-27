@@ -1,5 +1,6 @@
 
 def sign_up():
+    print("Welcome to the Sign Up Page of the Dijam Voting App")
     name = input("Enter your name: ")
     password = input("Enter your password: ")
 
@@ -10,6 +11,7 @@ def sign_up():
 
 
 def sign_in():
+    print("Welcome to the Sign In Page of the Dijam Voting App")
     name = input("Enter your name: ")
     password = input("Enter your password: ")
     file = open('voters.txt', 'r')
