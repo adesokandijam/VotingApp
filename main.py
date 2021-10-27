@@ -1,6 +1,3 @@
-import os.path
-import tarfile
-
 
 def sign_up():
     name = input("Enter your name: ")
@@ -87,20 +84,24 @@ def voting_logic():
                 print("Enter " + str(i + 1) + " to vote for " + people)
                 i += 1
             vote = int(input("Enter your vote here: "))
-            q[specific, candidate[specific][vote - 1]] += 1
-            print(q)
-        elif specific == "VicePresident":
+            if vote < len(candidate[specific]) and len(candidate[specific]) != 0:
+                q[specific, candidate[specific][vote - 1]] += 1
+            else:
+                print("wrong input. Vote is nullified")
+        elif specific == "VicePresident" and len(candidate[specific]) != 0:
                 print("We have " + str(len(candidate[specific])) + " people contesting for this position")
                 i = 0
                 for people in candidate[specific]:
                     print("Enter " + str(i + 1) + " to vote for " + people)
                     i += 1
                 vote = int(input("Enter your vote here: "))
-                q[specific, candidate[specific][vote - 1]] += 1
-                print (q[specific, candidate[specific][vote - 1]])
+                if vote < len(candidate[specific]):
+                    q[specific, candidate[specific][vote - 1]] += 1
+                else:
+                    print("wrong input. Vote is nullified")
                 #print(q)
 
-        elif specific == "GeneralSecretary":
+        elif specific == "GeneralSecretary" and len(candidate[specific]) != 0:
                 print("We have " + str(len(candidate[specific])) + " people contesting for this position")
                 i = 0
                 for people in candidate[specific]:
@@ -109,7 +110,7 @@ def voting_logic():
                 vote = int(input("Enter your vote here: "))
                 q[specific, people] += 1
                 print(q)
-        elif specific == "Treasurer":
+        elif specific == "Treasurer" and len(candidate[specific]) != 0:
                 print("We have " + str(len(candidate[specific])) + " people contesting for this position")
                 i = 0
                 for people in candidate[specific]:
@@ -118,7 +119,7 @@ def voting_logic():
                 vote = int(input("Enter your vote here: "))
                 q[specific, people] += 1
                 print(q)
-        elif specific == "AGS":
+        elif specific == "AGS" and len(candidate[specific]) != 0:
                 print("We have " + str(len(candidate[specific])) + " people contesting for this position")
                 i = 0
                 for people in candidate[specific]:
@@ -127,7 +128,7 @@ def voting_logic():
                 vote = int(input("Enter your vote here: "))
                 q[specific, people] += 1
                 print(q)
-        elif specific == "Sports":
+        elif specific == "Sports" and len(candidate[specific]) != 0:
                 print("We have " + str(len(candidate[specific])) + " people contesting for this position")
                 i = 0
                 for people in candidate[specific]:
@@ -136,6 +137,8 @@ def voting_logic():
                 vote = int(input("Enter your vote here: "))
                 q[specific, people] += 1
                 print(q)
+        else:
+            print("No candidate for the position " + specific)
     return q
 
 
