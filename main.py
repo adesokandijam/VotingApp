@@ -48,18 +48,8 @@ def getContestants():
     candidates = open('candidates.txt', 'r')
     for candidate in candidates:
         name, position = candidate.split()
-        if position == "President":
-            position_dict["President"].append(name)
-        elif position == "VicePresident":
-            position_dict["VicePresident"].append(name)
-        elif position == "GeneralSecretary":
-            position_dict["GeneralSecretary"].append(name)
-        elif position == "Treasurer":
-            position_dict["Treasurer"].append(name)
-        elif position == "AGS":
-            position_dict["AGS"].append(name)
-        elif position == "Sports":
-            position_dict["Sports"].append(name)
+        if position in position_dict.keys():
+            position_dict[position].append(name)
         else:
             print(f"Position {position} is not available at the moment")
     print(position_dict)
@@ -78,7 +68,7 @@ def voting_logic():
             i += 1
 
     for specific in candidate:
-        if specific == "President":
+        if specific == "President" and len(candidate[specific]) != 0:
             print("We have " + str(len(candidate[specific])) + " people contesting for this position")
             i = 0
             for people in candidate[specific]:
