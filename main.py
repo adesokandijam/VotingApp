@@ -98,18 +98,7 @@ def store_result():
     results.write("This is how " + name + " voted\n")
     for item in q:
         result = q[item]
-        if item[0] == "President":
-            results.write("President:\n" + str(item[1]) + ' ' + str(result) + " votes")
-        if item[0] == "VicePresident":
-            results.write("Vice President:\n" + str(item[1]) + ' ' + str(result) + " votes")
-        if item[0] == "GeneralSecretary":
-            results.write("General Secretary:\n" + str(item[1]) + ' ' + str(result) + " votes")
-        if item[0] == "Treasurer":
-            results.write("Treasurer:\n" + str(item[1]) + ' ' + str(result) + " votes")
-        if item[0] == "AGS":
-            results.write("AGS:\n" + str(item[1]) + ' ' + str(result) + " votes")
-        if item[0] == "Sports":
-            results.write("Sports:\n" + str(item[1]) + ' ' + str(result) + " votes")
+        results.write(item[0] + ' ' + str(item[1]) + ' ' + str(result) + " votes")
         results.write('\n')
     results.close()
 
